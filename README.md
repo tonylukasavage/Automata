@@ -27,11 +27,11 @@ Tested on
 Building the Source
 -------------------
 
-1. Install [grunt](http://gruntjs.com/getting-started) `[sudo] npm install -g grunt-cli`
-2. `npm install` to install Automata's depedencies
+1. `[sudo] npm install -g grunt-cli` to install [grunt](http://gruntjs.com/getting-started)
+2. `npm install` to install Automata's grunt depedencies
 3. `grunt` will build from "src/app.js" to "Resources/app.js"
 
-Check the Gruntfile.js for full details.
+Check the [Gruntfile.js](https://github.com/tonylukasavage/Automata/blob/master/Gruntfile.js) for full details.
 
 Known Issues
 ------------
