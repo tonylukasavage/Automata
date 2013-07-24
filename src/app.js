@@ -63,7 +63,7 @@ if (DEBUG) {
 		genTime = 0,
 		proxyTime = 0,
 		ctr = 0,
-		thisTime;
+		thisTime, start;
 }
 
 var x, y, cell;
@@ -75,9 +75,9 @@ while(true){
 
 			// minimze number of times we need to modify the proxy object
 			if (cell.alive !== cell.lastAlive) {
-				start = new Date().getTime();
+				if (DEBUG) { start = new Date().getTime(); }
 				cell.proxy.visible = cell.alive;
-				proxyTime += new Date().getTime() - start;
+				if (DEBUG) { proxyTime += new Date().getTime() - start; }
 			}
 
 			// save the state
