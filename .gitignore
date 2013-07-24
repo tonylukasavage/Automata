@@ -1,0 +1,7 @@
+build
+build.log
+tmp
+._*
+.DS_Store
+*.sublime-*
+node_modules
