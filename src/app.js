@@ -55,13 +55,25 @@ for (var x = 0; x < xSize; x++) {
 	}
 }
 
+// add FPS label
+var label = Ti.UI.createLabel({
+	text: 'FPS: ',
+	color: '#fff',
+	backgroundColor: '#a00',
+	height: 40,
+	width: 80,
+	top: 0,
+	left: 0,
+	textAlign: 'center',
+	opacity: 0.8
+});
+universe.add(label);
+
 universe.open();
 
 if (DEBUG) {
 	var lastTime = new Date().getTime(),
 		renderTime = 0,
-		genTime = 0,
-		proxyTime = 0,
 		ctr = 0,
 		thisTime, start;
 }
@@ -75,20 +87,12 @@ while(true){
 
 			// minimze number of times we need to modify the proxy object
 			if (cell.alive !== cell.lastAlive) {
-				if (DEBUG) { start = new Date().getTime(); }
 				cell.proxy.visible = cell.alive;
-				if (DEBUG) { proxyTime += new Date().getTime() - start; }
 			}
 
 			// save the state
 			cell.lastAlive = cell.alive;
 		}
-	}
-
-	if (DEBUG) {
-		thisTime = new Date().getTime();
-		renderTime += thisTime - lastTime;
-		lastTime = thisTime;
 	}
 
 	// build next generation
@@ -101,15 +105,14 @@ while(true){
 
 	if (DEBUG) {
 		thisTime = new Date().getTime();
-		genTime += thisTime - lastTime;
+		renderTime += thisTime - lastTime;
 		lastTime = thisTime;
 
 		// Sadly this shows that the "render" time, which consists solely of changing the visible
 		// state of the proxies, consumes about 100x as much time as the "generation" step.
-		if (++ctr % 50 === 0) {
-			Ti.API.info('render: ' + (renderTime/ctr));
-			Ti.API.info('gen:    ' + (genTime/ctr));
-			Ti.API.info('proxy:  ' + (proxyTime/ctr));
+		if (++ctr % 10 === 0) {
+			label.text = 'FPS: ' + Math.round(10000.0/(renderTime/ctr))/10;
+			renderTime = ctr = 0;
 		}
 	}
 }
