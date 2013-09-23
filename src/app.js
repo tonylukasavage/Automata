@@ -75,7 +75,7 @@ if (DEBUG) {
 	var lastTime = new Date().getTime(),
 		renderTime = 0,
 		ctr = 0,
-		thisTime, start;
+		thisTime;
 }
 
 var x, y, cell;
